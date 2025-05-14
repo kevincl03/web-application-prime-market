@@ -1,0 +1,7 @@
+NEXT_PUBLIC_MONGODB_URI=mongodb+srv://kevincl:lHhHBJozJqVw9qYg@cluster-ecommerce.kplqdpb.mongodb.net/App-Ecommerce?retryWrites=true&w=majority&appName=cluster-ecommerce
+NEXTAUTH_URL=http://localhost:3000
+GITHUB_ID=Iv23lim9ox0VpYK11kbF
+GITHUB_SECRET=26a5d388215f3f108ce06d337fe09ce9b834853f
+GOOGLE_ID=1008651125688-6taiem7mojpouqai6j4f2ts9k15evcog.apps.googleusercontent.com
+GOOGLE_SECRET=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
+NEXTAUTH_SECRET=425f46a594ae93e6a05d86eff3a7d6cb
