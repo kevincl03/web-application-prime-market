@@ -16,21 +16,6 @@ export type FormValues = {
 
 const Login = () => {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const message: string = "No se pudo obtener tu correo de GitHub. Por favor, verifica que tu correo esté público o utiliza otro método de inicio de sesión.";
-  useEffect(() => {
-    const error = searchParams.get("error");
-    if (error === "github_error_email") {
-      toast.info(message, {
-        position: "top-right",
-        autoClose: 6000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        theme: "colored",
-      });
-    }
-  }, [searchParams]);
 
   return (
     <Suspense fallback={<div>Cargando...</div>}>
@@ -46,6 +31,7 @@ interface LoginContentProps {
 const LoginContent = ({ router }: LoginContentProps) => {
   const searchParams = useSearchParams();
   const path = searchParams?.get("redirect");
+  const message: string = "No se pudo obtener tu correo de GitHub. Por favor, verifica que tu correo esté público o utiliza otro método de inicio de sesión.";
 
   const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -64,6 +50,20 @@ const LoginContent = ({ router }: LoginContentProps) => {
       router.push("/");
     }
   };
+
+  useEffect(() => {
+    const error = searchParams.get("error");
+    if (error === "github_error_email") {
+      toast.info(message, {
+        position: "top-right",
+        autoClose: 6000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        theme: "colored",
+      });
+    }
+  }, [searchParams]);
 
   return (
     <div className="max-h-screen flex items-center justify-center bg-gray-100 mt-12 py-14 px-12 sm:px-8 lg:px-10">
