@@ -23,7 +23,7 @@ const SignUp = () => {
 
     try {
       const resp = await axios.post(
-        `${process.env.NEXTAUTH_URL}/signup/api`,
+        `${process.env.NEXT_PUBLIC_API_URL}/signup/api`,
         newUser,
         {
           headers: {

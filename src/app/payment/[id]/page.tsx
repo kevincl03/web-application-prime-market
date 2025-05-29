@@ -66,7 +66,7 @@ const Payment: React.FC<CheckoutProps> = ({ params }) => {
 
     try {
       const resp = await axios.post<PaymentResponse>(
-        `${process.env.NEXTAUTH_URL}/payment/api/paymenting`, // Use POST method
+        `${process.env.NEXT_PUBLIC_API_URL}/payment/api/paymenting`, // Use POST method
         newBooking, // Send the newBooking as request body
         {
           headers: {

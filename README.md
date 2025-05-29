@@ -51,7 +51,7 @@ npm install
 cp .env.example .env.local
 
 # Configuración de NextAuth
-NEXTAUTH_URL=http://localhost:3000
+NEXT_PUBLIC_API_URL=http://localhost:3000
 NEXTAUTH_SECRET=tu_clave_secreta_aqui
 
 # Configuración de Base de Datos (si aplica)

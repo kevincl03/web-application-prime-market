@@ -140,7 +140,7 @@ const Footer = () => {
           <span className="text-violet-600"> Market.</span> Todos los Derechos Reservados.
         </p>
         <div className="flex justify-center gap-2 mt-2">
-          <Image src="https://flagcdn.com/co.svg" alt="Bandera de Colombia" width="24" height="18"/>
+          <Image src="https://flagcdn.com/co.svg" alt="Bandera de Colombia" width={24} height={15} style={{height: "auto"}}/>
           <p>Colombia.</p>
         </div>
       </div>

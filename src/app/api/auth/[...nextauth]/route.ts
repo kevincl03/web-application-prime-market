@@ -80,7 +80,7 @@ const handler = NextAuth({
 
         if (!email) {
           console.log("GitHub user has no email.");
-          return false;
+          return "/login?error=github_error_email";
         }
       }
 

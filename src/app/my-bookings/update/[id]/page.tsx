@@ -68,17 +68,17 @@ const Page = ({ params }: { params: { id: string } }) => {
         <form onSubmit={handleUpdateBooking}>
           <div className="flex justify-between">
             <h2 className="text-2xl font-semibold mb-4 text-gray-700">
-              Edit Info
+              Editar Información
             </h2>
             <h2 className="text-2xl font-semibold mb-4 text-red-900">
-              Total Amount:{" "}
+              Cantidad total:{" "}
               <span className="text-green-900">{booking?.price}</span>
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Name</span>
+                <span className="label-text">Nombre</span>
               </label>
               <input
                 defaultValue={data?.user?.name || ""}
@@ -89,7 +89,7 @@ const Page = ({ params }: { params: { id: string } }) => {
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Date</span>
+                <span className="label-text">Fecha</span>
               </label>
               <input
                 defaultValue={booking?.date}
@@ -112,7 +112,7 @@ const Page = ({ params }: { params: { id: string } }) => {
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Due amount</span>
+                <span className="label-text">Monto a pagar</span>
               </label>
               <input
                 defaultValue={booking?.price}
@@ -124,19 +124,19 @@ const Page = ({ params }: { params: { id: string } }) => {
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Phone</span>
+                <span className="label-text">Telefono</span>
               </label>
               <input
                 defaultValue={booking?.phone}
                 type="text"
                 name="phone"
-                placeholder="Your Phone"
+                placeholder="Número de telefono"
                 className="input input-bordered"
               />
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Present Address</span>
+                <span className="label-text">Dirección actual</span>
               </label>
               <input
                 defaultValue={booking?.address}

@@ -5,8 +5,9 @@ import login from "/public/images/backgroundLogin1.webp";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import GoogleGithubLogin from "@/components/Shared/GoogleGithubLogin";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import Image from "next/image";
+import { toast } from "react-toastify";
 
 export type FormValues = {
   email: string;
@@ -15,6 +16,21 @@ export type FormValues = {
 
 const Login = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const message: string = "No se pudo obtener tu correo de GitHub. Por favor, verifica que tu correo esté público o utiliza otro método de inicio de sesión.";
+  useEffect(() => {
+    const error = searchParams.get("error");
+    if (error === "github_error_email") {
+      toast.info(message, {
+        position: "top-right",
+        autoClose: 6000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        theme: "colored",
+      });
+    }
+  }, [searchParams]);
 
   return (
     <Suspense fallback={<div>Cargando...</div>}>

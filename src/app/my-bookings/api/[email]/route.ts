@@ -16,9 +16,11 @@ export const GET = async (
 
   const bookingsCollection: Collection<Document> = db.collection("bookings");
 
+  const { email } = await params;
+
   try {
     const myBookings = await bookingsCollection
-      .find({ email: params.email })
+      .find({ email: email })
       .toArray();
     return NextResponse.json({ myBookings });
   } catch (error) {

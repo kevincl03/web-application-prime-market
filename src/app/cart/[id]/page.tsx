@@ -82,7 +82,7 @@ const AddToCart = ({ params }: AddToCartProps) => {
 
     try {
       const response = await axios.post<BookingResponse>(
-        `${process.env.NEXTAUTH_URL}/checkout/api/new-booking`,
+        `${process.env.NEXT_PUBLIC_API_URL}/checkout/api/new-booking`,
         newBooking,
         {
           headers: {

@@ -71,17 +71,17 @@ const Page = () => {
   return (
     <div className="overflow-x-auto pt-8 mt-20">
       <h1 className="flex items-center justify-center mb-2 text-3xl">
-        My Booking
+        Mis Reservas
       </h1>
       <table className="table table-zebra">
         <thead>
           <tr className="bg-gray-100 border-b font-bold text-sky-700">
-            <th className="py-2 px-4">No</th>
-            <th className="py-2 px-4">Name</th>
-            <th className="py-2 px-4">Payment</th>
-            <th className="py-2 px-4">Price</th>
-            <th className="py-2 px-4">Date</th>
-            <th className="py-2 px-4">Actions</th>
+            <th className="py-2 px-4">N°</th>
+            <th className="py-2 px-4">Nombre</th>
+            <th className="py-2 px-4">Pago</th>
+            <th className="py-2 px-4">Precio</th>
+            <th className="py-2 px-4">Fecha</th>
+            <th className="py-2 px-4">Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -106,14 +106,14 @@ const Page = () => {
                   <div className="flex items-center space-x-2">
                     <Link href={`/my-bookings/update/${_id}`}>
                       <button className="bg-sky-900 hover:bg-sky-600 text-white font-bold py-2 px-4 rounded">
-                        Edit
+                        Editar
                       </button>
                     </Link>
                     <button
                       onClick={() => handleDelete(_id)}
                       className="bg-red-900 hover:bg-red-500 text-white font-bold py-2 px-4 rounded"
                     >
-                      Delete
+                      Eliminar
                     </button>
                   </div>
                 </td>

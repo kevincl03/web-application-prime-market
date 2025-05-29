@@ -77,7 +77,7 @@ const Checkout: React.FC<CheckoutProps> = ({ params }) => {
     try {
       // Making the POST request to the backend to create a new booking
       const resp = await axios.post(
-        `${process.env.NEXTAUTH_URL}/checkout/api/new-booking`,
+        `${process.env.NEXT_PUBLIC_API_URL}/checkout/api/new-booking`,
         newBooking,
         {
           headers: {
