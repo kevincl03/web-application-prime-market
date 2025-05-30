@@ -19,7 +19,8 @@ const config: Config = {
   /* --add component */
   plugins: [daisyui], // DaisyUI plugin
   daisyui: {
-    themes: ["light", "dark"], // Configure DaisyUI themes
+    themes: ["light", "dark"],
+    darkTheme: false, // Configure DaisyUI themes
   },
 
   /*  plugins: [require("daisyui")], */

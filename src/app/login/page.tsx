@@ -42,12 +42,22 @@ const LoginContent = ({ router }: LoginContentProps) => {
     const resp = await signIn("credentials", {
       email,
       password,
-      redirect: true,
+      redirect: false,
       callbackUrl: path || "/",
     });
 
     if (resp?.status === 200) {
       router.push("/");
+    } else {
+      console.error("Login failed:", resp?.error);
+      toast.info("Email o contraseña incorrectos. Verifica tus credenciales.", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        theme: "colored",
+      });
     }
   };
 
