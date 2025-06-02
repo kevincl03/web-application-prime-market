@@ -149,18 +149,25 @@ const NavBar = () => {
                 className="btn btn-ghost btn-circle avatar"
               >
                 <div className="w-10 rounded-full">
-                  <Image
-                    alt="Profile"
-                    src={session.user?.image || "/default-profile.png"}
-                    height="40"
-                    width="40"
-                    className="rounded-full"
-                  />
+                  {(() => {
+                    const userImage = session.user?.image;
+                    const defaultImage = "/icons/profile.webp";
+                    const imageSrc = userImage && userImage.trim() !== "" ? userImage : defaultImage;
+                    return (
+                      <Image
+                        alt="Profile"
+                        src={imageSrc}
+                        height="40"
+                        width="40"
+                        className="rounded-full"
+                      />
+                    );
+                  })()}
                 </div>
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-gray-100 rounded-box z-[1] mt-1 w-72 p-4 shadow-md"
+                className="dropdown-content menu menu-sm bg-gray-100 rounded-box z-[1] mt-1 w-72 p-4 shadow-md"
               >
                 <li>
                   <a>{session.user?.name}</a>
@@ -168,11 +175,6 @@ const NavBar = () => {
                 <li>
                   <a>{session.user?.email}</a>
                 </li>
-                <Link href="/admin">
-                  <li>
-                    <span>Admin</span>
-                  </li>
-                </Link>
                 <li>
                   <button onClick={() => signOut()} className="text-red-600">
                     Cerrar Sesión

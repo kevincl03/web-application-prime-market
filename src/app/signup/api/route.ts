@@ -4,9 +4,9 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 
 export const POST = async (request: Request) => {
-  const newUser = await request.json();
-
   try {
+    const newUser = await request.json();
+
     const db = await connectDB();
 
     if (!db) {
@@ -18,10 +18,10 @@ export const POST = async (request: Request) => {
 
     const userCollection = db.collection("users");
     const exist = await userCollection.findOne({ email: newUser.email });
-    console.log(exist);
+    console.log("Usuario existente:", exist);
 
     if (exist) {
-      return NextResponse.json({ message: "User Exists" }, { status: 304 });
+      return NextResponse.json({ message: "User Exists" }, { status: 409 });
     }
 
     const hashedPassword = bcrypt.hashSync(newUser.password, 14);
@@ -30,8 +30,17 @@ export const POST = async (request: Request) => {
       password: hashedPassword,
     });
 
-    return NextResponse.json({ message: "User Created" }, { status: 200 });
+    return NextResponse.json({
+      message: "User Created",
+      user: {
+        id: resp.insertedId.toString(),
+        email: newUser.email,
+        name: newUser.name
+      }
+    }, { status: 200 });
+
   } catch (error) {
+    console.error("Error en signup API:", error);
     return NextResponse.json(
       { message: "Something Went Wrong", error },
       { status: 500 }
