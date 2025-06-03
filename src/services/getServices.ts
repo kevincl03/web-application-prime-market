@@ -3,13 +3,25 @@ import { TProduct, TProductDetails, TService, TServiceDetails } from "@/types";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
+const apiClient = axios.create({
+  baseURL: BASE_URL,
+  timeout: 10000,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+apiClient.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    console.error('API Request failed:', error.message);
+    return Promise.reject(error);
+  }
+);
+
 export const getServices = async (): Promise<TService[]> => {
   try {
-    const res = await axios.get<{ services: TService[] }>(
-      `${BASE_URL}/services/api/get-all`
-    );
-
-    console.log("Fetched services:", res.data);
+    const res = await apiClient.get<{ services: TService[] }>("/services/api/get-all");
 
     if (res.status !== 200 || !res.data.services) {
       throw new Error(`Failed to fetch services: ${res.statusText}`);
@@ -26,9 +38,7 @@ export const getServicesDetails = async (
   id: string
 ): Promise<TServiceDetails> => {
   try {
-    const res = await axios.get(`${BASE_URL}/services/api/${id}`);
-
-    console.log("Fetched service details:", res.data);
+    const res = await apiClient.get(`/services/api/${id}`);
 
     if (res.status !== 200) {
       throw new Error(`Failed to fetch service details: ${res.statusText}`);
@@ -41,36 +51,19 @@ export const getServicesDetails = async (
   }
 };
 
-// Fetch all products
-/* export const getProducts = async () => {
-  try {
-    const res = await axios.get(`${BASE_URL}/products/api/getdata`);
-    if (res.status !== 200) {
-      throw new Error(`Failed to fetch products: ${res.statusText}`);
-    }
-    const products = res.data;
-    return products;
-  } catch (error) {
-    console.error("Error fetching products:", error);
-    return [];
-  }
-}; */
-
 export const getProducts = async (): Promise<TProduct[]> => {
   try {
-    const res = await axios.get<{ products: TProduct[] }>(
-      `${BASE_URL}/products/api/getdata`
+    const res = await apiClient.get<{ products: TProduct[] }>(
+      "/products/api/getdata"
     );
 
-    console.log("Fetched services:", res.data);
-
     if (res.status !== 200 || !res.data.products) {
-      throw new Error(`Failed to fetch services: ${res.statusText}`);
+      throw new Error(`Failed to fetch products: ${res.statusText}`);
     }
 
     return res.data.products;
   } catch (error) {
-    console.error("Error fetching services:", error);
+    console.error("Error fetching products:", error);
     return [];
   }
 };
@@ -79,17 +72,15 @@ export const getProductsDetails = async (
   id: string
 ): Promise<TProductDetails> => {
   try {
-    const res = await axios.get(`${BASE_URL}/products/api/${id}`);
-
-    console.log("Fetched service details:", res.data);
+    const res = await apiClient.get(`/products/api/${id}`);
 
     if (res.status !== 200) {
-      throw new Error(`Failed to fetch service details: ${res.statusText}`);
+      throw new Error(`Failed to fetch product details: ${res.statusText}`);
     }
 
     return res.data as TProductDetails;
   } catch (error) {
-    console.error(`Error fetching service details for ID ${id}:`, error);
+    console.error(`Error fetching product details for ID ${id}:`, error);
     return {} as TProductDetails;
   }
 };

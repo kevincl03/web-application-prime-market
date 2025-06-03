@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import AuthProviders from "@/services/AuthProviders";
 import NavBar from "@/components/Shared/NavBar";
+import { ServiceWorkerRegistration, PerformanceDashboard } from "@/components/ClientComponents";
 
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
@@ -21,18 +22,31 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "Prime Market",
   description: "Prime Market E-Commerce",
+  manifest: "/manifest.json",
+  themeColor: "#4F46E5",
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+  },
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
-  return (
+}>) {  return (
     <html lang="es">
-      <body
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link rel="preload" href="/images/header1.png" as="image" />
+        <link rel="preload" href="/images/header2.png" as="image" />
+      </head>      <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <ServiceWorkerRegistration />
+        <PerformanceDashboard isVisible={process.env.NODE_ENV === 'development'} />
         <ToastContainer />
         <AuthProviders>
           <NavBar />

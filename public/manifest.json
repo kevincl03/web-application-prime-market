@@ -1,0 +1,39 @@
+{
+  "name": "Prime Market",
+  "short_name": "Prime Market",
+  "description": "E-commerce application with optimized performance",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4F46E5",
+  "orientation": "portrait-primary",
+  "categories": ["shopping", "business"],
+  "lang": "es",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/icons/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Products",
+      "short_name": "Products",
+      "description": "View all products",
+      "url": "/products",
+      "icons": []
+    },
+    {
+      "name": "Cart",
+      "short_name": "Cart",
+      "description": "View shopping cart",
+      "url": "/cart",
+      "icons": []
+    }
+  ],
+  "screenshots": [],
+  "prefer_related_applications": false
+}
