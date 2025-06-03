@@ -1,6 +1,6 @@
 # 🛒 Prime Market – Aplicación Web E-Commerce
 
-**Prime Market** es una aplicación web de comercio electrónico de última generación, desarrollada con tecnologías modernas y optimizada para máximo rendimiento. El proyecto incluye características avanzadas como PWA, monitoreo de rendimiento en tiempo real, optimización de base de datos y estrategias de caché inteligentes.
+**Prime Market** es una aplicación web de comercio electrónico, desarrollada con tecnologías modernas y optimizada para máximo rendimiento. El proyecto incluye características avanzadas como PWA, monitoreo de rendimiento en tiempo real, optimización de base de datos y estrategias de caché inteligentes.
 
 ## 🚀 Características Principales
 
@@ -78,10 +78,9 @@ web-application-prime-market/
 │   │   ├── performance.ts          # Monitoreo de rendimiento
 │   │   ├── database-optimization.ts # Optimización de BD
 │   │   └── performance-test.ts     # Testing de performance
-│   ├── store/                       # Estado global (Redux)
 │   └── types/                       # Definiciones de tipos
 ├── .env.example                     # Variables de entorno ejemplo
-├── next.config.js                   # Configuración Next.js + Sentry
+├── next.config.js                   # Configuración Next.js
 ├── tailwind.config.ts               # Configuración Tailwind
 ├── tsconfig.json                    # Configuración TypeScript
 └── package.json                     # Dependencias y scripts
@@ -113,20 +112,19 @@ npm install
 Copia el archivo de ejemplo y configura las variables:
 
 ```bash
-cp .env.example .env.local
+cp .env.example .env
 ```
 
-Edita `.env.local` con tus configuraciones:
+Edita `.env` con tus configuraciones:
 
 ```env
-# Base de Datos MongoDB
-MONGODB_URI=mongodb://localhost:27017/prime-market
-# O para MongoDB Atlas:
-# MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/prime-market
+# Base de datos MongoDB Atlas:
+# MONGODB_URI=tu_uri_de_conexión_a_mongodb_atlas
 
 # URLs de la aplicación
 NEXT_PUBLIC_API_URL=http://localhost:3000
 NEXTAUTH_URL=http://localhost:3000
+SENTRY_AUTH_TOKEN=token_auth_de_sentry
 
 # Autenticación NextAuth
 NEXTAUTH_SECRET=tu_clave_secreta_super_segura_aqui
@@ -258,8 +256,6 @@ furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 ```
-
-## 🙌 Agradecimientos
 
 ### Tecnologías y Herramientas
 - **[Next.js](https://nextjs.org/)** - El framework React para producción
