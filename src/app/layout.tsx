@@ -41,8 +41,6 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link rel="preload" href="/images/header1.png" as="image" />
-        <link rel="preload" href="/images/header2.png" as="image" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
