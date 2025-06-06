@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
+  maximumScale: 5,
   themeColor: "#4F46E5",
 };
 
@@ -43,7 +43,8 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link rel="preload" href="/images/header1.png" as="image" />
         <link rel="preload" href="/images/header2.png" as="image" />
-      </head>      <body
+      </head>
+      <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ServiceWorkerRegistration />

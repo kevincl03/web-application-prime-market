@@ -183,7 +183,7 @@ const NavBar = () => {
               </ul>
             </div>
           ) : (
-            <Link href="/login" className="btn btn-outline text-green-600 px-4">
+            <Link href="/login" className="btn btn-outline border-green-700 text-green-700 hover:bg-green-700 hover:text-white px-4">
               Iniciar Sesión
             </Link>
           )}
