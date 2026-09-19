@@ -25,11 +25,9 @@ const Footer = () => {
             Tu tienda integral de productos premium. Ofreciendo confianza
             y calidad.
           </p>
-        </div>
-
-        {/* Services */}
+        </div>        {/* Services */}
         <div>
-          <h6 className="text-lg font-semibold mb-4">Nuestros Servicios</h6>
+          <h3 className="text-lg font-semibold mb-4">Nuestros Servicios</h3>
           <ul className="space-y-2">
             <li>
               <Link href="/services/branding">
@@ -60,11 +58,9 @@ const Footer = () => {
               </Link>
             </li>
           </ul>
-        </div>
-
-        {/* About Us */}
+        </div>        {/* About Us */}
         <div>
-          <h6 className="text-lg font-semibold mb-4">Sobre Nosotros</h6>
+          <h3 className="text-lg font-semibold mb-4">Sobre Nosotros</h3>
           <ul className="space-y-2">
             <li>
               <Link href="/about">
@@ -95,11 +91,9 @@ const Footer = () => {
               </Link>
             </li>
           </ul>
-        </div>
-
-        {/* Quick Links */}
+        </div>        {/* Quick Links */}
         <div>
-          <h6 className="text-lg font-semibold mb-4">Enlaces Rápidos</h6>
+          <h3 className="text-lg font-semibold mb-4">Enlaces Rápidos</h3>
           <ul className="space-y-2">
             <li>
               <Link href="/products">
