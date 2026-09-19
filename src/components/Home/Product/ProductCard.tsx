@@ -26,10 +26,10 @@ const ProductCard: React.FC<ProductCardProps> = memo(({ product }) => {
   }, []);
 
   return (
-    <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-      <div className="relative w-full h-52 overflow-hidden bg-gray-100">
+    <div className="max-w-sm bg-base-100 border border-base-300 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+      <div className="relative w-full h-52 overflow-hidden bg-base-200">
         {imageLoading && (
-          <div className="absolute inset-0 bg-gray-300 animate-pulse" />
+          <div className="absolute inset-0 bg-base-300 animate-pulse" />
         )}
         <Image
           src={imageError ? "/default-profile.jpg" : (image || "/default-profile.jpg")}
@@ -48,10 +48,10 @@ const ProductCard: React.FC<ProductCardProps> = memo(({ product }) => {
         />
       </div>
       <div className="p-4">
-        <h2 className="text-lg font-bold text-gray-800 truncate" title={name}>
+        <h2 className="text-lg font-bold text-base-content truncate" title={name}>
           {name}
         </h2>
-        <p className="text-gray-600 text-sm mt-1 line-clamp-2" title={description}>
+        <p className="text-base-content/70 text-sm mt-1 line-clamp-2" title={description}>
           {description}
         </p>
         <div className="mt-2 flex items-center justify-between">

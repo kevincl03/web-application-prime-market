@@ -2,11 +2,12 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import AuthProviders from "@/services/AuthProviders";
+import ThemeProvider from "@/services/ThemeProvider";
 import NavBar from "@/components/Shared/NavBar";
 import { ServiceWorkerRegistration, PerformanceDashboard } from "@/components/ClientComponents";
+import ThemedToastContainer from "@/components/UI/ThemedToastContainer";
 
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,7 +30,10 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#4F46E5",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f8fafc" },
+    { media: "(prefers-color-scheme: dark)", color: "#101827" },
+  ],
 };
 
 export default function RootLayout({
@@ -38,7 +42,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
+    <html lang="es" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
@@ -48,11 +52,18 @@ export default function RootLayout({
       >
         <ServiceWorkerRegistration />
         <PerformanceDashboard isVisible={process.env.NODE_ENV === 'development'} />
-        <ToastContainer />
-        <AuthProviders>
-          <NavBar />
-          {children}
-        </AuthProviders>
+        <ThemeProvider
+          attribute="data-theme"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <AuthProviders>
+            <ThemedToastContainer />
+            <NavBar />
+            {children}
+          </AuthProviders>
+        </ThemeProvider>
       </body>
     </html>
   );

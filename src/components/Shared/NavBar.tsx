@@ -6,13 +6,23 @@ import Image from "next/image";
 import Link from "next/link";
 import Logo from "/public/icons/logo.svg";
 import { signOut, useSession } from "next-auth/react";
+import { Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 const NavBar = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { data: session } = useSession();
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  const isDark = mounted && resolvedTheme === "dark";
+  const nextTheme = isDark ? "light" : "dark";
 
   return (
-    <header className="bg-gray-100 shadow-lg w-full fixed top-0 z-50">
+    <header className="bg-base-100 text-base-content shadow-lg w-full fixed top-0 z-50">
       <nav className="navbar container mx-auto px-4">
         <div className="navbar-start flex items-center">
           <div className="dropdown lg:hidden">
@@ -38,11 +48,11 @@ const NavBar = () => {
             </button>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-gray-100 rounded-box mt-3 w-52 p-2 shadow-md"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow-md"
             >
               <li>
                 <Link
-                  className="flex items-center p-4 hover:bg-base-300 rounded text-lg font-medium text-gray-700 hover:text-sky-800 transition duration-300"
+                  className="flex items-center p-4 hover:bg-base-300 rounded text-lg font-medium text-base-content hover:text-primary transition duration-300"
                   href="/"
                 >
                   Inicio
@@ -71,7 +81,7 @@ const NavBar = () => {
           <ul className="menu menu-horizontal space-x-4">
             <li>
               <Link
-                className="flex items-center p-2 hover:bg-base-300 rounded text-lg font-medium text-gray-700 hover:text-sky-800 transition duration-300"
+                className="flex items-center p-2 hover:bg-base-300 rounded text-lg font-medium text-base-content hover:text-primary transition duration-300"
                 href="/"
               >
                 Inicio
@@ -79,7 +89,7 @@ const NavBar = () => {
             </li>
             <li>
               <Link
-                className="flex items-center p-2 hover:bg-base-300 rounded text-lg font-medium text-gray-700 hover:text-sky-800 transition duration-300"
+                className="flex items-center p-2 hover:bg-base-300 rounded text-lg font-medium text-base-content hover:text-primary transition duration-300"
                 href="/products"
               >
                 Productos
@@ -87,7 +97,7 @@ const NavBar = () => {
             </li>
             <li>
               <Link
-                className="flex items-center p-2 hover:bg-base-300 rounded text-lg font-medium text-gray-700 hover:text-sky-800 transition duration-300"
+                className="flex items-center p-2 hover:bg-base-300 rounded text-lg font-medium text-base-content hover:text-primary transition duration-300"
                 href="/my-bookings"
               >
                 Mis Reservas
@@ -95,7 +105,7 @@ const NavBar = () => {
             </li>
             <li>
               <Link
-                className="flex items-center p-2 hover:bg-base-300 rounded text-lg font-medium text-gray-700 hover:text-sky-800 transition duration-300"
+                className="flex items-center p-2 hover:bg-base-300 rounded text-lg font-medium text-base-content hover:text-primary transition duration-300"
                 href="/about"
               >
                 Acerca de
@@ -109,9 +119,18 @@ const NavBar = () => {
             <input
               type="text"
               placeholder="Buscar"
-              className="input input-bordered w-24 md:w-auto bg-gray-200 focus:outline-none focus:ring-2 focus:ring-violet-500"
+              className="input input-bordered w-24 md:w-auto bg-base-200 focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
+
+          <button
+            type="button"
+            className="btn btn-ghost btn-circle"
+            aria-label={mounted ? `Cambiar a tema ${nextTheme === "dark" ? "oscuro" : "claro"}` : "Cambiar tema"}
+            onClick={() => setTheme(nextTheme)}
+          >
+            {isDark ? <Sun aria-hidden="true" size={20} /> : <Moon aria-hidden="true" size={20} />}
+          </button>
 
           <div className="dropdown dropdown-end">
             <button
@@ -122,7 +141,7 @@ const NavBar = () => {
               <div className="indicator">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 text-gray-700"
+                  className="h-5 w-5 text-base-content"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -167,7 +186,7 @@ const NavBar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="dropdown-content menu menu-sm bg-gray-100 rounded-box z-[1] mt-1 w-72 p-4 shadow-md"
+                className="dropdown-content menu menu-sm bg-base-100 rounded-box z-[1] mt-1 w-72 p-4 shadow-md"
               >
                 <li>
                   <a>{session.user?.name}</a>
@@ -183,7 +202,7 @@ const NavBar = () => {
               </ul>
             </div>
           ) : (
-            <Link href="/login" className="btn btn-outline border-green-700 text-green-700 hover:bg-green-700 hover:text-white px-4">
+            <Link href="/login" className="btn btn-outline btn-success px-4">
               Iniciar Sesión
             </Link>
           )}

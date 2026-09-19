@@ -6,6 +6,7 @@
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -51,6 +52,7 @@ interface BookingResponse {
 
 const Page = () => {
   const { data: session } = useSession();
+  const { resolvedTheme } = useTheme();
   const [users, setUsers] = useState<User[]>([]);
   const [bookings, setBookings] = useState<Booking[]>([]);
 
@@ -85,6 +87,10 @@ const Page = () => {
     }
   }, [session]);
 
+  const isDark = resolvedTheme === "dark";
+  const chartTextColor = isDark ? "#e5edf8" : "#172033";
+  const chartGridColor = isDark ? "#34445c" : "#d8e0eb";
+
   // Chart data
   const salesData = {
     labels: ["Total Users", "Total Orders", "Total Sales"],
@@ -92,7 +98,7 @@ const Page = () => {
       {
         label: "Statistics",
         data: [users.length, bookings.length, 10],
-        backgroundColor: ["#4F46E5", "#10B981", "#F59E0B"],
+        backgroundColor: ["#6366f1", "#10b981", "#f59e0b"],
       },
     ],
   };
@@ -102,8 +108,13 @@ const Page = () => {
     plugins: {
       legend: {
         position: "top" as const,
+          labels: { color: chartTextColor },
       },
     },
+      scales: {
+        x: { ticks: { color: chartTextColor }, grid: { color: chartGridColor } },
+        y: { ticks: { color: chartTextColor }, grid: { color: chartGridColor } },
+      },
   };
 
   return (
@@ -114,23 +125,23 @@ const Page = () => {
         </h2>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-2">
-        <div className="p-6 bg-sky-100 rounded-lg shadow-lg flex flex-col items-center">
+        <div className="p-6 bg-base-100 rounded-lg shadow-lg flex flex-col items-center">
           <h3 className="text-2xl font-semibold text-sky-600">Total Users</h3>
           <p className="text-3xl font-bold">{users.length}</p>
         </div>
 
-        <div className="p-6 bg-sky-100 rounded-lg shadow-lg flex flex-col items-center">
+        <div className="p-6 bg-base-100 rounded-lg shadow-lg flex flex-col items-center">
           <h3 className="text-2xl font-semibold text-sky-600">Total Orders</h3>
           <p className="text-3xl font-bold">{bookings.length}</p>
         </div>
 
-        <div className="p-6 bg-sky-100 rounded-lg shadow-lg flex flex-col items-center">
+        <div className="p-6 bg-base-100 rounded-lg shadow-lg flex flex-col items-center">
           <h3 className="text-2xl font-semibold text-sky-600">Total Sales</h3>
           <p className="text-3xl font-bold">50</p>
         </div>
       </div>
 
-      <div className="p-4 bg-gray-100 rounded-lg shadow-lg">
+      <div className="p-4 bg-base-100 rounded-lg shadow-lg">
         <h2 className="text-2xl font-semibold text-center mb-1">
           Sales Statistics
         </h2>

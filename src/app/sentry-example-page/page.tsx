@@ -98,7 +98,8 @@ export default function Page() {
         h1 {
           padding: 0px 4px;
           border-radius: 4px;
-          background-color: rgba(24, 20, 35, 0.03);
+          background-color: var(--surface-muted);
+          color: var(--foreground);
           font-family: monospace;
           font-size: 20px;
           line-height: 1.2;
@@ -110,20 +111,17 @@ export default function Page() {
         }
 
         a {
-          color: #6341F0;
+          color: var(--focus);
           text-decoration: underline;
           cursor: pointer;
 
-          @media (prefers-color-scheme: dark) {
-            color: #B3A1FF;
-          }
         }
 
         button {
           border-radius: 8px;
           color: white;
           cursor: pointer;
-          background-color: #553DB8;
+          background-color: #1d4ed8;
           border: none;
           padding: 0;
           margin-top: 4px;
@@ -135,8 +133,8 @@ export default function Page() {
             font-size: 20px;
             font-weight: bold;
             line-height: 1;
-            background-color: #7553FF;
-            border: 1px solid #553DB8;
+            background-color: #2563eb;
+            border: 1px solid #1d4ed8;
             transform: translateY(-4px);
           }
 
@@ -151,14 +149,11 @@ export default function Page() {
 
         .description {
           text-align: center;
-          color: #6E6C75;
+          color: var(--muted);
           max-width: 500px;
           line-height: 1.5;
           font-size: 20px;
 
-          @media (prefers-color-scheme: dark) {
-            color: #A49FB5;
-          }
         }
 
         .flex-spacer {
@@ -172,7 +167,7 @@ export default function Page() {
           line-height: 1;
           background-color: #00F261;
           border: 1px solid #00BF4D;
-          color: #181423;
+          color: #062e16;
         }
 
         .success_placeholder {

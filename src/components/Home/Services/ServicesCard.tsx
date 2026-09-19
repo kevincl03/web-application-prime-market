@@ -14,7 +14,7 @@ const ServicesCard = ({ service }: ServicesCardProps) => {
 
   return (
     <div
-      className="card bg-white w-full max-w-sm shadow-lg m-3 overflow-hidden relative border rounded-lg transition-all duration-300 hover:scale-105"
+      className="card bg-base-100 w-full max-w-sm shadow-lg m-3 overflow-hidden relative border border-base-300 rounded-lg transition-all duration-300 hover:scale-105"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -31,11 +31,11 @@ const ServicesCard = ({ service }: ServicesCardProps) => {
       </Link>
 
       <div className="card-body p-6">
-        <h2 className="card-title text-xl font-semibold text-gray-900">
+        <h2 className="card-title text-xl font-semibold text-base-content">
           {name}
         </h2>
         {/* <p className="text-sm text-gray-600 mb-4">{description}</p> */}
-        <p className="text-lg font-semibold text-gray-800">Precio: ${price}</p>
+        <p className="text-lg font-semibold text-base-content">Precio: ${price}</p>
         <div className="flex items-center mt-2">
           <span className="text-yellow-500">{"⭐".repeat(ratings)}</span>
         </div>

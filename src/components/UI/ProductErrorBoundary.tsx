@@ -30,10 +30,10 @@ class ProductErrorBoundary extends React.Component<Props, State> {
         <div className="container mx-auto px-2 py-10">
           <div className="flex flex-col items-center justify-center py-12">
             <div className="text-center">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+              <h2 className="text-2xl font-semibold text-base-content mb-4">
                 Oops! Algo salió mal
               </h2>
-              <p className="text-gray-600 mb-6">
+              <p className="text-base-content/70 mb-6">
                 Ha ocurrido un error al cargar los productos. Por favor, intenta recargar la página.
               </p>
               <button 

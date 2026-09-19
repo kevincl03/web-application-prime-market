@@ -2,29 +2,85 @@
 @tailwind components;
 @tailwind utilities;
 
-/* globals.css or styles.css */
 :root {
-  --background: #ffffff;
-  --foreground: #000000;
+  color-scheme: light;
+  --background: #f8fafc;
+  --foreground: #172033;
+  --surface: #ffffff;
+  --surface-muted: #eef2f7;
+  --border: #d8e0eb;
+  --muted: #526078;
+  --focus: #2563eb;
+}
+[data-theme="dark"],
+.dark {
+  color-scheme: dark;
+  --background: #101827;
+  --foreground: #e5edf8;
+  --surface: #182335;
+  --surface-muted: #202f45;
+  --border: #34445c;
+  --muted: #a8b7cc;
+  --focus: #60a5fa;
 }
 
-[data-theme="dark"] {
-  --background: #1e1e2f;
-  --foreground: #ffffff;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a; /* Dark background */
-    --foreground: #ededed; /* Light text */
-  }
-}
-
-/* Apply styles to body */
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), sans-serif;
+  transition: color 180ms ease, background-color 180ms ease;
+}
+
+::selection {
+  color: var(--surface);
+  background: var(--focus);
+}
+
+input,
+textarea,
+select {
+  color: var(--foreground);
+  background-color: var(--surface);
+  border-color: var(--border);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--muted);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Compatibility layer for existing literal utility classes during migration. */
+[data-theme="dark"] .bg-white,
+[data-theme="dark"] .bg-gray-50,
+[data-theme="dark"] .bg-gray-100,
+[data-theme="dark"] .bg-gray-200,
+[data-theme="dark"] .bg-gray-300 {
+  background-color: var(--surface) !important;
+}
+
+[data-theme="dark"] .text-black,
+[data-theme="dark"] .text-gray-500,
+[data-theme="dark"] .text-gray-600,
+[data-theme="dark"] .text-gray-700,
+[data-theme="dark"] .text-gray-800,
+[data-theme="dark"] .text-gray-900 {
+  color: var(--foreground) !important;
+}
+
+[data-theme="dark"] .border-gray-200,
+[data-theme="dark"] .border-gray-300 {
+  border-color: var(--border) !important;
+}
+
+[data-theme="dark"] .hover\:bg-gray-50:hover,
+[data-theme="dark"] .hover\:bg-gray-100:hover,
+[data-theme="dark"] .hover\:bg-gray-300:hover {
+  background-color: var(--surface-muted) !important;
 }
 
 /* Extend Tailwind Utilities with custom utility */
@@ -34,14 +90,3 @@ body {
   }
 }
 
-/* Tailwind Dark Mode Support */
-.dark {
-  --background: #0a0a0a; /* Dark background */
-  --foreground: #ededed; /* Light text */
-}
-
-/* Additional styling for dark mode */
-body.dark {
-  color: var(--foreground);
-  background: var(--background);
-}
