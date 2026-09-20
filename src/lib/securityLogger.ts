@@ -47,7 +47,9 @@ export async function writeSecurityLog(
 
     const record = {
       timestamp: new Date().toISOString(),
+      application: "prime-market",
       ...event,
+      srcip: event.ip,
     };
 
     await appendFile(
